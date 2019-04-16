@@ -24,14 +24,16 @@ class RenjuPanel:
             print(string)
 
     def loop(self):
+        self.rob1.set_role(1)
+        self.rob2.set_role(-1)
         for i in range(1000):
             self.cnt += 1
             self.turn = self.cnt % 2
             if self.turn == 1:
-                pose = rob1.run()
+                pose = self.rob1.run()
                 self.set_pose(pose, 1, 'X')
             else:
-                pose = rob2.run()
+                pose = self.rob2.run()
                 self.set_pose(pose, -1, 'O')
             obey_rule = self.check_rule()
             assert obey_rule, 'someone break the rule'
@@ -105,7 +107,4 @@ if __name__ == '__main__':
     renju.set_pose((2, 2), -1, 'O')
     renju.draw()
     #renju.loop()
-
-
-        
 
