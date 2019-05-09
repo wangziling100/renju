@@ -59,10 +59,11 @@ class RenjuPanel:
         check_mat2 = np.ones((5, 1))
         check_mat3 = np.eye(5)
         check_wnd = self.get_check_wnd()
+
         length = len(check_wnd)
         for i in range(length-4):
             mat1 = check_wnd[i:i+5, i:i+5]
-            mat2 = np.rot90(mat1)
+            mat2 = np.rot90(check_wnd)[i:i+5, i:i+5]
             tmp = np.dot(check_mat1, mat1)
             if -5 in tmp.tolist() or 5 in tmp.tolist():
                 return True
@@ -97,14 +98,14 @@ class RenjuPanel:
         self.stat[pose] = value
 
 
-
 if __name__ == '__main__':
     renju = RenjuPanel(17)
-    renju.set_pose((6, 6), -1, 'O')
-    renju.set_pose((5, 5), -1, 'O')
+    renju.set_pose((8, 0), -1, 'O')
+    renju.set_pose((7, 1), -1, 'O')
+    renju.set_pose((6, 2), -1, 'O')
+    renju.set_pose((5, 3), -1, 'O')
     renju.set_pose((4, 4), -1, 'O')
-    renju.set_pose((3, 3), -1, 'O')
-    renju.set_pose((2, 2), -1, 'O')
-    renju.draw()
+    # renju.draw()
+    print(renju.check_success())
     #renju.loop()
 
